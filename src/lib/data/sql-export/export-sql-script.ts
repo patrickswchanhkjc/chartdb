@@ -739,7 +739,7 @@ export const exportSQL = async (
 
     const prompt = generateSQLPrompt(databaseType, sqlScript);
 
-    try {
+    // try {
         if (options?.stream) {
             const { textStream, text: textPromise } = await streamText({
                 model: openai(modelName),
@@ -766,17 +766,17 @@ export const exportSQL = async (
 
         setInCache(cacheKey, text);
         return text;
-    } catch (error: unknown) {
-        console.error('Error generating SQL:', error);
-        if (error instanceof Error && error.message.includes('API key')) {
-            throw new Error(
-                'Error: Please check your API configuration. If using a custom endpoint, make sure the endpoint URL is correct.'
-            );
-        }
-        throw new Error(
-            'Error generating SQL script. Please check your configuration and try again.'
-        );
-    }
+    // } catch (error: unknown) {
+    //     console.error('Error generating SQL:', error);
+    //     if (error instanceof Error && error.message.includes('API key')) {
+    //         throw new Error(
+    //             'Error: Please check your API configuration. If using a custom endpoint, make sure the endpoint URL is correct.'
+    //         );
+    //     }
+    //     throw new Error(
+    //         'Error generating SQL script. Please check your configuration and try again.'
+    //     );
+    // }
 };
 
 function getMySQLDataTypeSize(type: DataType) {
